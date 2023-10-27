@@ -1,0 +1,32 @@
+.button1 {
+  width: Hug (47px);
+  height: Hug (24px);
+  top: 172px;
+  left: 24px;
+  padding: 4px, 8px, 4px, 8px;
+  border-radius: 25px;
+  border: 1px;
+  background: #0284c7;
+  border: 1px solid #0284c7;
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #f8fafc;
+}
+
+@media (max-width: 768px) {
+  .Small-SIze-Devices {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .Small-SIze-Devices {
+    display: none;
+  }
+}

@@ -1,0 +1,19 @@
+.outerhomecontainer {
+}
+.afterheaderContainer {
+  background-color: #ebebeb;
+  padding: 10px;
+}
+.Slickcontainer {
+  background-color: #ffffff;
+}
+.ContactUsSection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-top: 50px;
+}
+.marginRight {
+  margin-right: 20px;
+}

@@ -1,0 +1,26 @@
+.indi {
+  display: flex;
+  flex-direction: row;
+}
+
+.CompanyName {
+  height: 50vh;
+  margin-right: 5px;
+}
+
+.inner {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+
+.status {
+  color: blue;
+}
+
+.individualcompanycard12 {
+  padding: 20px;
+  background-color: white;
+  font-family: 'Roboto';
+}

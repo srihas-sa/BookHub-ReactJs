@@ -66,3 +66,8 @@ Previous Arrow buttons according to your project */
   font-family: 'Roboto';
   font-weight: bold;
 }
+
+.linkgone {
+  text-decoration: none;
+  color: black;
+}

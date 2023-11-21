@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 
@@ -92,13 +93,15 @@ class ReactSlick extends Component {
         {booklist.map(eachBook => {
           const {id, authorname, coverpic, title} = eachBook
           return (
-            <div className="slick-item" key={id}>
-              <img className="logo-image" src={coverpic} alt="Book logo" />
-              <div className="text">
-                <p>{title}</p>
-                <p className="topmargin">{authorname}</p>
+            <Link to={`/books/${id}`} className="linkgone">
+              <div className="slick-item" key={id}>
+                <img className="logo-image" src={coverpic} alt="Book logo" />
+                <div className="text">
+                  <p>{title}</p>
+                  <p className="topmargin">{authorname}</p>
+                </div>
               </div>
-            </div>
+            </Link>
           )
         })}
       </Slider>

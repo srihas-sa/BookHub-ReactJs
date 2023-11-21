@@ -23,10 +23,18 @@
     flex-wrap: wrap;
     padding: 10px;
   }
+
+  .Large-Size-Devices {
+    display: none;
+  }
 }
 
 @media (min-width: 768px) {
   .Small-SIze-Devices {
     display: none;
+  }
+  .leftsideLargeContainer {
+    display: flex;
+    flex-direction: column;
   }
 }

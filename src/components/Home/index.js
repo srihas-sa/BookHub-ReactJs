@@ -2,12 +2,8 @@ import {Component} from 'react'
 import {Redirect, Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-import {
-  AiOutlineTwitter,
-  AiOutlineInstagram,
-  AiFillYoutube,
-  AiOutlineGoogle,
-} from 'react-icons/ai'
+import {FaGoogle, FaTwitter, FaInstagram, FaYoutube} from 'react-icons/fa'
+
 import Header from '../Header'
 import ReactSlick from '../ReactSlick'
 import './index.css'
@@ -67,7 +63,7 @@ class Home extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container" data-testid="loader">
+    <div className="loader-container" testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
     </div>
   )
@@ -79,10 +75,12 @@ class Home extends Component {
         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
         className="error-view-image"
       />
-      <h1 className="product-not-found-heading">Oops! Something Went Wrong</h1>
+      <p className="product-not-found-heading">
+        Something went wrong. Please try again
+      </p>
       <p>We are having some trouble</p>
       <button type="button" className="button" onClick={this.getProducts}>
-        Retry
+        Try Again
       </button>
     </div>
   )
@@ -123,20 +121,17 @@ class Home extends Component {
         <Header />
         <div className="afterheaderContainer">
           <h1>Find Your Next Favorite Books?</h1>
-          <p>
-            You are in the right place. Tell us what titles or genres you have
-            enjoyed in the past, and we will give you surprisingly insightful
-            recommendations.
-          </p>
+          <p>You are in the right place.</p>
+          <h1>Top Rated Books</h1>
           <div className="Slickcontainer">{this.gettoptenbooks()}</div>
           <div className="ContactUsSection">
             <div>
-              <AiOutlineGoogle size={30} className="marginRight" />
-              <AiOutlineTwitter size={30} className="marginRight" />
-              <AiOutlineInstagram size={30} className="marginRight" />
-              <AiFillYoutube size={30} />
+              <FaGoogle size={30} className="marginRight" />
+              <FaTwitter size={30} className="marginRight" />
+              <FaInstagram size={30} className="marginRight" />
+              <FaYoutube size={30} />
             </div>
-            <h3>Contact Us</h3>
+            <h3>Contact us</h3>
           </div>
         </div>
       </div>

@@ -97,7 +97,7 @@ class ReactSlick extends Component {
               <div className="slick-item" key={id}>
                 <img className="logo-image" src={coverpic} alt="Book logo" />
                 <div className="text">
-                  <p>{title}</p>
+                  <h1>{title}</h1>
                   <p className="topmargin">{authorname}</p>
                 </div>
               </div>

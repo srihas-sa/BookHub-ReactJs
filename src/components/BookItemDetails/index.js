@@ -2,8 +2,10 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {Redirect} from 'react-router-dom'
-import Header from '../Header'
 
+import {FaGoogle, FaTwitter, FaInstagram, FaYoutube} from 'react-icons/fa'
+import {BsFillStarFill} from 'react-icons/bs'
+import Header from '../Header'
 import './index.css'
 
 const apiStatusConstants = {
@@ -68,7 +70,7 @@ class BookItemDetails extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="products-details-loader-container">
+    <div className="products-details-loader-container" testid="loader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   )
@@ -80,14 +82,14 @@ class BookItemDetails extends Component {
         src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
         className="error-view-image"
       />
-      <h1 className="product-not-found-heading">Oops! Something Went Wrong</h1>
-      <p>We cannot seem to find the page you are looking for</p>
+      <p>Something went wrong. Please try again</p>
+
       <button
         type="button"
         className="button"
         onClick={() => this.getProductData}
       >
-        Retry
+        Try Again
       </button>
     </div>
   )
@@ -101,15 +103,18 @@ class BookItemDetails extends Component {
           <div className="indi">
             <img
               src={Bookdetails.coverpic}
-              alt="job details company logo"
+              alt={Bookdetails.title}
               className="CompanyName"
             />
             <div className="indi1">
               <h1>{Bookdetails.title}</h1>
               <p className="title">{Bookdetails.authorname}</p>
-              <p className="rating">{Bookdetails.rating}</p>
+              <p className="rating">
+                Avg Rating <BsFillStarFill /> {Bookdetails.rating}
+              </p>
               <p>
-                <span className="status">Status</span>:{Bookdetails.readstatus}
+                <span className="status">Status:</span>
+                {Bookdetails.readstatus}
               </p>
             </div>
           </div>
@@ -158,6 +163,15 @@ class BookItemDetails extends Component {
       <div className="outerdetailed" data-testid="loader">
         <Header />
         {this.renderProductDetails()}
+        <div className="ContactUsSection">
+          <div>
+            <FaGoogle size={30} className="marginRight" />
+            <FaTwitter size={30} className="marginRight" />
+            <FaInstagram size={30} className="marginRight" />
+            <FaYoutube size={30} />
+          </div>
+          <h3>Contact us</h3>
+        </div>
       </div>
     )
   }

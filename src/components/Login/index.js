@@ -91,24 +91,15 @@ class Login extends Component {
               onChange={this.changingusername}
             />
             <br />
-            <label htmlFor="password">PASSWORD</label>
+            <label htmlFor="password">Password*</label>
             <br />
             <input
-              type={showpasword ? 'text' : 'password'}
+              type="password"
               id="password"
               placeholder="Password:rahul@2021"
               className="inputUser"
               onChange={this.changingpassword}
             />
-            <div className="showbuttoncontainer">
-              <input
-                type="checkbox"
-                value="Show Password"
-                onClick={this.Onclickingshowbutton}
-                id="showpassword"
-              />
-              <label htmlFor="showpassword">Show Password</label>
-            </div>
             <br />
             <button type="submit" className="loginbuttn">
               Login

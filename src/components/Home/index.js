@@ -131,7 +131,7 @@ class Home extends Component {
               <FaInstagram size={30} className="marginRight" />
               <FaYoutube size={30} />
             </div>
-            <h3>Contact us</h3>
+            <p>Contact us</p>
           </div>
         </div>
       </div>

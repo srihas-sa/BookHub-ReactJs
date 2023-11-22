@@ -2,7 +2,9 @@ import {Component} from 'react'
 import {Redirect, Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-import {FcSearch} from 'react-icons/fc'
+import {FaGoogle, FaTwitter, FaInstagram, FaYoutube} from 'react-icons/fa'
+
+import {BsFillStarFill, BsSearch} from 'react-icons/bs'
 import Header from '../Header'
 import ReactSlick from '../ReactSlick'
 import './index.css'
@@ -37,9 +39,10 @@ const bookshelvesList = [
   },
 ]
 
-class Home extends Component {
+class Bookshelves extends Component {
   state = {
-    shelf: 'All',
+    shelf: 'ALL',
+
     searchInput: '',
     apiStatus: apiStatusConstants.initial,
     booklist: [],
@@ -90,7 +93,7 @@ class Home extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container" data-testid="loader">
+    <div className="loader-container" testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
     </div>
   )
@@ -102,27 +105,62 @@ class Home extends Component {
         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
         className="error-view-image"
       />
-      <h1 className="product-not-found-heading">Oops! Something Went Wrong</h1>
-      <p>We are having some trouble</p>
+      <p className="product-not-found-heading">
+        Something went wrong. Please try again
+      </p>
+
       <button type="button" className="button" onClick={this.getProducts}>
-        Retry
+        Try Again
       </button>
     </div>
   )
 
   rendertopbookview = () => {
-    const {booklist} = this.state
-
+    const {booklist, shelf, searchInput} = this.state
+    console.log(shelf)
+    const length = booklist.length > 0
     return (
       <div>
-        {booklist.map(eachbook => {
-          const {id, authorname, coverpic, title, readstatus, rating} = eachbook
-          return (
-            <div>
-              <img src={coverpic} alt={title} />
-            </div>
-          )
-        })}
+        {length && (
+          <ul className="outermost">
+            {booklist.map(eachbook => {
+              const {
+                id,
+                authorname,
+                coverpic,
+                title,
+                readstatus,
+                rating,
+              } = eachbook
+              return (
+                <li className="individual">
+                  <img src={coverpic} alt={title} className="individualimage" />
+                  <div className="">
+                    <h1>{title}</h1>
+                    <p className="title">{authorname}</p>
+                    <p className="rating">
+                      Avg Rating <BsFillStarFill color="yellow" /> {rating}
+                    </p>
+                    <p>
+                      Status:
+                      <span className="status">{readstatus}</span>
+                    </p>
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+        )}
+        {!length && (
+          <div>
+            <img
+              src="https://res.cloudinary.com/dkcqlgabg/image/upload/v1700656869/Group_7484_bhi3bf.png"
+              alt="no books"
+            />
+
+            <p>Your search for {searchInput} did not find any matches</p>
+          </div>
+        )}
       </div>
     )
   }
@@ -146,8 +184,13 @@ class Home extends Component {
     this.setState({searchInput: e.target.value})
   }
 
+  onclickedbutton = async shelfs => {
+    await this.setState({shelf: shelfs})
+    this.getProducts()
+  }
+
   render() {
-    const {category, searchInput} = this.state
+    const {category, searchInput, shelf} = this.state
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken === undefined) {
       return <Redirect to="/login" />
@@ -157,44 +200,24 @@ class Home extends Component {
         <Header />
         <div className="afterheaderContainer">
           <div className="Small-SIze-Devices">
-            <input
-              type="search"
-              id="hello"
-              placeholder="Search"
-              data-testid="searchButton"
-              onChange={this.cickingSearch}
-            />
-            <label htmlFor="hello" className="backgrrrr">
-              <FcSearch />
-            </label>
-            <button type="button" className="button1">
-              All
-            </button>
-
-            <button type="button" className="button1">
-              Read
-            </button>
-            <button type="button" className="button1">
-              Currently Reading
-            </button>
-            <button type="button" className="button1">
-              Want To Read
-            </button>
+            {bookshelvesList.map(eachshelve => {
+              console.log('hello')
+              return (
+                <button
+                  type="button"
+                  className="button1"
+                  onClick={() => this.onclickedbutton(eachshelve.label)}
+                >
+                  {eachshelve.label}
+                </button>
+              )
+            })}
             <div className="Slickcontainer">{this.gettoptenbooks()}</div>
           </div>
 
           <div className="Large-Size-Devices">
             <div>
-              <input
-                type="search"
-                id="hello"
-                placeholder="Search"
-                data-testid="searchButton"
-                onChange={this.cickingSearch}
-              />
-              <label htmlFor="hello" className="backgrrrr">
-                <FcSearch />
-              </label>
+              <h1 className="heading">Bookshelves</h1>
               <ul className="leftsideLargeContainer">
                 {bookshelvesList.map(eachshelve => {
                   console.log('hello')
@@ -210,12 +233,38 @@ class Home extends Component {
                 })}
               </ul>
             </div>
-            <div className="RightSideContainer">{this.gettoptenbooks()}</div>
+            <div className="RightSideContainer">
+              <div className="sameRow">
+                <h1>{shelf} Books</h1>
+                <div>
+                  <input
+                    type="search"
+                    id="hello"
+                    placeholder="Search"
+                    testid="searchButton"
+                    onChange={this.cickingSearch}
+                  />
+                  <label htmlFor="hello" className="backgrrrr">
+                    <BsSearch />
+                  </label>
+                </div>
+              </div>
+              {this.gettoptenbooks()}
+            </div>
           </div>
+        </div>
+        <div className="ContactUsSection">
+          <div>
+            <FaGoogle size={30} className="marginRight" />
+            <FaTwitter size={30} className="marginRight" />
+            <FaInstagram size={30} className="marginRight" />
+            <FaYoutube size={30} />
+          </div>
+          <p>Contact us</p>
         </div>
       </div>
     )
   }
 }
 
-export default Home
+export default Bookshelves

@@ -84,11 +84,7 @@ class BookItemDetails extends Component {
       />
       <p>Something went wrong. Please try again</p>
 
-      <button
-        type="button"
-        className="button"
-        onClick={() => this.getProductData}
-      >
+      <button type="button" className="button" onClick={this.getProductData}>
         Try Again
       </button>
     </div>
@@ -110,11 +106,12 @@ class BookItemDetails extends Component {
               <h1>{Bookdetails.title}</h1>
               <p className="title">{Bookdetails.authorname}</p>
               <p className="rating">
-                Avg Rating <BsFillStarFill /> {Bookdetails.rating}
+                Avg Rating <BsFillStarFill color="yellow" />{' '}
+                {Bookdetails.rating}
               </p>
               <p>
-                <span className="status">Status:</span>
-                {Bookdetails.readstatus}
+                Status:
+                <span className="status">{Bookdetails.readstatus}</span>
               </p>
             </div>
           </div>
@@ -170,7 +167,7 @@ class BookItemDetails extends Component {
             <FaInstagram size={30} className="marginRight" />
             <FaYoutube size={30} />
           </div>
-          <h3>Contact us</h3>
+          <p>Contact us</p>
         </div>
       </div>
     )

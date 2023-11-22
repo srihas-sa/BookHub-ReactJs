@@ -34,16 +34,14 @@ const bookshelvesList = [
 ]
 
 const App = () => (
-  <div>
-    <Switch>
-      <Route exact path="/login" component={Login} />
-      <ProtectedRoute exact path="/" component={Home} />
-      <ProtectedRoute exact path="/bookshelves" component={Bookshelves} />
-      <ProtectedRoute exact path="/books/:id" component={BookItemDetails} />
-      <Route exact path="not-found" component={NotFound} />
-      <Redirect to="not-found" />
-    </Switch>
-  </div>
+  <Switch>
+    <Route exact path="/login" component={Login} />
+    <ProtectedRoute exact path="/" component={Home} />
+    <ProtectedRoute exact path="/shelf" component={Bookshelves} />
+    <ProtectedRoute exact path="/books/:id" component={BookItemDetails} />
+    <Route path="/not-found" component={NotFound} />
+    <Redirect to="not-found" />
+  </Switch>
 )
 
 export default App

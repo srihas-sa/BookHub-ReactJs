@@ -113,12 +113,14 @@ class ReactSlick extends Component {
       <div className="main-container">
         <div className="TopRated">
           <div>
-            <p className="para">Top Rated Books</p>
+            <h1 className="para">Top Rated Books</h1>
           </div>
           <div>
-            <button type="button" className="buttonelement">
-              Find Books
-            </button>
+            <Link to="shelf">
+              <button type="button" className="buttonelement">
+                Find Books
+              </button>
+            </Link>
           </div>
         </div>
         <div className="slick-container">{this.renderSlider()}</div>
